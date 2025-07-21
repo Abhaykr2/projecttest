@@ -47,4 +47,56 @@ sudo make install
   
 
 check green tick  in service 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Nagios
+1. sudo dpkg-reconfigure tzdata
+2. cd /tmp/
+3. install nagious file by WinSCP(if nagios file is in the base machine)
+4.  sudo apt-get install apache2 apache2-utils autoconf gcc libc6 libgd-dev make php python3 tree unzip wget libkrb5-dev openssl libssl-dev
+5. tar -zxf nagios-4.5.0.tar.gz
+6. cd nagios-4.5.0
+7. sudo ./configure --with-httpd-conf=/etc/apache2/sites-enabled/
+8. sudo make all
+9. sudo make install-groups-users
+10. sudo passwd nagios
+11. sudo usermod -a -G nagios www-data
+12. sudo make install
+13. ls -l /usr/local/
+14. sudo make install-daemoninit
+15. sudo make install-commandmode
+16. ls -l /usr/local/nagios/
+17. sudo make install-config
+18. ls -l /usr/local/nagios/etc/
+19. tree /etc/apache2/sites-*
+20. sudo make install-webconf
+21. tree /etc/apache2/sites-*
+22. sudo a2enmod cgi
+23. sudo a2enmod rewrite
+24. sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+25. sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+26. Now restart apache2 and nagios
+27. Now go to web and type ip nagios portal is appear and user- nagiosadmin , pass: 
+28. sudo apt-get install -y automake autotools-dev bc build-essential dc gawk gettext libmcrypt-dev libnet-snmp-perl libssl-dev snmp
+29. cd ..
+30. cd /tmp/
+31. tar -zxf nagios-plugins-2.4.8.tar.gz
+32. cd nagios-plugins-2.4.8
+33. sudo ./configure
+34. sudo make
+35. sudo make install
+36.  ls -l /usr/local/nagios/libexec/
+37. win10 is required mem 8Gb
+38. install plugins nagios(ncpa-2.1.9)
+39. 
+37. Now go to new Debian machine where configure nagis monitoring
+	cd /tmp/
+38. first upload ncpa-latest file in tmp
+39. sudo apt-get install libsqlite3-0
+40.  sudo dpkg -i ncpa-latest-1.amd64.deb
+41.  sudo nano /usr/local/ncpa/etc/ncpa.cfg
+42. [api]
+    community_string = password1234
+43. sudo systemctl restart ncpa
+44. Now go to server
+45.  cd /usr/local/nagios/libexec/
 
