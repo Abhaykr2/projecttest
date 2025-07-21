@@ -15,3 +15,33 @@ Sudo iptables -A INPUT -m  state  - -state  ESTABLISHED -j ACCEPT
 Sudo iptables -A INPUT -p tcp  - - dport 22 -j ACCEPT
 Sudo iptables -L -v
 Sudo iptables -A INPUT -s 192.168.80.131  -p tcp - - dport  22 -j ACCEPT
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+firewall
+sudo apt-get install iptables
+sudo iptables -F
+sudo iptables -P FORWARD DROP
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT
+sudo iptables -A INPUT -s 192.168.126.1 -p tcp --dport 22 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -L -v
+sudo iptables -L -v 192.168.126.12 -p tcp --dport 22 j ACCEPT
+sudo iptables -L INPUT 7
+sudo iptables -L --line-numbers
+====================================================================================
+sudo ./firewall.sh
+sudo iptables -L
+ls -l /etc/ip
+create folder inside etc/
+sudo mkdir /etc/iptables
+sudo iptables-save
+sudo sh -c "iptables-save > /etc/iptables/rules.v4"
+ls -l /etc/iptables
+sudo apt-get install iptables-persistent
+iptables -A INPUT -s 192.168.0.200 -j ACCEPT
+iptables -A INPUT -s 192.168.0.0/24 -j ACCEPT
+iptables -A INPUT -m iprange --src-range 192.168.100.200-192.168.100.205 -j ACCEPT
+iptables -A INPUT -s 192.168.0.4 -m mac --mac-source 00:50:8D:FD:E6:32 -j ACCEPT
+iptables -A INPUT -p tcp --dport 6881 -j ACCEPT
